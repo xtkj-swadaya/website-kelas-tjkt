@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X TKJ/TJKT — Website Kelas</title>
+<style>
+:root{
+  --bg:#050914;--card:#0b1220;--blue:#00aaff;--cyan:#00e5ff;
+  --text:#eaf7ff;--muted:#91a8ba;--line:#163047;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;
+  background:radial-gradient(circle at 80% 10%,#06335b55,transparent 30%),var(--bg);
+  color:var(--text);line-height:1.6;
+}
+body:before{
+  content:"";position:fixed;inset:0;pointer-events:none;opacity:.08;
+  background-image:linear-gradient(#00aaff 1px,transparent 1px),linear-gradient(90deg,#00aaff 1px,transparent 1px);
+  background-size:45px 45px;mask-image:linear-gradient(to bottom,#000,transparent 80%);
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  background:#050914dd;backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:1100px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:900;letter-spacing:1px;color:var(--cyan)}
+.logo span{color:white}
+.menu{display:flex;gap:22px;list-style:none}
+.menu a{color:var(--muted);text-decoration:none;font-size:14px}
+.menu a:hover{color:var(--cyan)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:white;border-radius:8px;padding:7px 10px}
+.hero{min-height:100vh;display:grid;place-items:center;padding:110px 20px 70px;text-align:center}
+.hero-content{max-width:850px}
+.badge{display:inline-block;padding:7px 13px;border:1px solid #00aaff55;border-radius:999px;background:#00aaff12;color:var(--cyan);font-size:13px;margin-bottom:18px}
+h1{font-size:clamp(42px,9vw,82px);line-height:1.02;letter-spacing:-3px}
+.glow{color:var(--cyan);text-shadow:0 0 25px #00aaff66}
+.hero p{color:var(--muted);max-width:650px;margin:22px auto;font-size:17px}
+.btn{
+  display:inline-block;padding:12px 20px;border-radius:10px;text-decoration:none;
+  background:linear-gradient(135deg,var(--blue),#0068ff);color:white;font-weight:800;
+  box-shadow:0 0 25px #008cff33;margin:5px
+}
+.btn.alt{background:#0d1827;border:1px solid var(--line);box-shadow:none}
+section{max-width:1100px;margin:auto;padding:80px 20px}
+.title{text-align:center;margin-bottom:35px}
+.title h2{font-size:34px}.title p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:linear-gradient(145deg,#0d1727,#080f1c);border:1px solid var(--line);
+  border-radius:16px;padding:24px;transition:.25s
+}
+.card:hover{transform:translateY(-4px);border-color:#008cff88;box-shadow:0 10px 35px #008cff14}
+.icon{font-size:28px;margin-bottom:10px}.card h3{margin-bottom:7px}.card p{color:var(--muted)}
+.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:14px}
+table{width:100%;border-collapse:collapse;min-width:650px;background:#09111e}
+th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:left}
+th{color:var(--cyan);background:#0d1a2a}
+td{color:#c9d9e4}
+.notice{display:flex;gap:15px;align-items:flex-start}
+.notice strong{color:var(--cyan)}
+.students{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.student{padding:15px;border:1px solid var(--line);border-radius:12px;background:#0a1422}
+.student b{display:block}.student small{color:var(--muted)}
+.gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.photo{height:190px;border-radius:15px;border:1px dashed #24516c;background:linear-gradient(135deg,#08182a,#0c2b42);display:grid;place-items:center;color:#668ba1}
+footer{border-top:1px solid var(--line);padding:35px 20px;text-align:center;color:var(--muted)}
+footer b{color:var(--cyan)}
+@media(max-width:750px){
+  .menu-btn{display:block}.menu{display:none;position:absolute;top:58px;left:15px;right:15px;padding:15px;flex-direction:column;background:#07101d;border:1px solid var(--line);border-radius:12px}
+  .menu.open{display:flex}.grid{grid-template-columns:1fr}.students{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:1fr}
+  section{padding:65px 16px}h1{letter-spacing:-2px}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="nav-inner">
+    <div class="logo">&lt;X <span>TKJ/TJKT</span> /&gt;</div>
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">Beranda</a></li><li><a href="#profil">Profil</a></li>
+      <li><a href="#siswa">Siswa</a></li><li><a href="#jadwal">Jadwal</a></li>
+      <li><a href="#pengumuman">Info</a></li><li><a href="#galeri">Galeri</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="home">
+  <div class="hero-content">
+    <div class="badge">💻 COMPUTER • NETWORK • TECHNOLOGY</div>
+    <h1>WELCOME TO<br><span class="glow">X TKJ / TJKT</span></h1>
+    <p>Website resmi kelas untuk berbagi informasi, jadwal, kegiatan, dan cerita seru keluarga X TKJ/TJKT.</p>
+    <a class="btn" href="#profil">Kenalan dengan Kelas</a>
+    <a class="btn alt" href="#jadwal">Lihat Jadwal</a>
+  </div>
+</header>
+
+<section id="profil">
+  <div class="title"><h2>Profil Kelas</h2><p>Satu kelas, satu tim, satu tujuan.</p></div>
+  <div class="grid">
+    <div class="card"><div class="icon">🖥️</div><h3>Jurusan</h3><p>Teknik Komputer dan Jaringan / Teknik Jaringan Komputer dan Telekomunikasi.</p></div>
+    <div class="card"><div class="icon">⚡</div><h3>Karakter Kelas</h3><p>Kompak, kreatif, aktif belajar, dan siap menghadapi dunia teknologi.</p></div>
+    <div class="card"><div class="icon">🎯</div><h3>Target</h3><p>Menguasai dasar komputer, jaringan, troubleshooting, dan teknologi digital.</p></div>
+  </div>
+</section>
+
+<section id="siswa">
+  <div class="title"><h2>Struktur Kelas</h2><p>Pengurus dan petugas kelas X TKJ/TJKT.</p></div>
+  <div class="students">
+    <div class="student"><b>Wali Kelas</b><small>Asep Saepudin, S.Pd.</small></div>
+    <div class="student"><b>Ketua Kelas</b><small>Putra F.H</small></div>
+    <div class="student"><b>Wakil Ketua</b><small>M. Alip Nurdiansyah</small></div>
+    <div class="student"><b>Sekretaris 1</b><small>Ainni Ainur</small></div>
+    <div class="student"><b>Sekretaris 2</b><small>Astri</small></div>
+    <div class="student"><b>Bendahara 1</b><small>P. Meylani</small></div>
+    <div class="student"><b>Bendahara 2</b><small>Dhea Cantika B.</small></div>
+    <div class="student"><b>Kebersihan</b><small>Fahmi Aziz &amp; Raffa Azka</small></div>
+    <div class="student"><b>Keamanan</b><small>Viraldy S.P</small></div>
+    <div class="student"><b>Keupacaraan</b><small>Muhammad Rijki</small></div>
+  </div>
+</section>
+
+<section id="jadwal">
+  <div class="title"><h2>Jadwal Pelajaran</h2><p>Jadwal lengkap X TKJ/TJKT.</p></div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Hari</th><th>Waktu</th><th>Kegiatan / Mata Pelajaran</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="6">Senin</td><td>07.00 - 07.40</td><td>Upacara</td></tr>
+        <tr><td>07.40 - 09.25</td><td>B. Inggris (Kode 12b)</td></tr>
+        <tr><td>09.25 - 10.00</td><td>IPAS (Kode 2)</td></tr>
+        <tr><td>10.00 - 10.15</td><td>Istirahat</td></tr>
+        <tr><td>10.15 - 12.00</td><td>B. Indonesia (Kode 19a)</td></tr>
+        <tr><td>12.00 - 12.40</td><td>Istirahat / Sholat Duhur</td></tr>
+        <tr><td>Senin</td><td>12.40 - 15.00</td><td>B. Indonesia (Kode 19a)</td></tr>
+        <tr><td>Senin</td><td>15.00 - Selesai</td><td>Ekstrakurikuler</td></tr>
+
+        <tr><td>Selasa</td><td>07.00 - 07.40</td><td>Sholat Dhuha &amp; Membaca Wirdullatif</td></tr>
+        <tr><td>Selasa</td><td>07.40 - 09.25</td><td>IPAS (Kode 2)</td></tr>
+        <tr><td>Selasa</td><td>09.25 - 10.00</td><td>B. Sunda (Kode 7)</td></tr>
+        <tr><td>Selasa</td><td>10.00 - 10.15</td><td>Istirahat</td></tr>
+        <tr><td>Selasa</td><td>10.15 - 11.25</td><td>DDP TJKT (Kode 9a)</td></tr>
+        <tr><td>Selasa</td><td>11.25 - 12.00</td><td>PABP (Kode 13a)</td></tr>
+        <tr><td>Selasa</td><td>12.00 - 12.40</td><td>Istirahat / Sholat Duhur</td></tr>
+        <tr><td>Selasa</td><td>12.40 - 13.15</td><td>PABP (Kode 13a)</td></tr>
+        <tr><td>Selasa</td><td>13.15 - 15.00</td><td>Informatika (Kode 16)</td></tr>
+        <tr><td>Selasa</td><td>15.00 - Selesai</td><td>Ekstrakurikuler</td></tr>
+
+        <tr><td>Rabu</td><td>07.00 - 07.40</td><td>Sholat Dhuha &amp; Tadarus Al-Qur'an</td></tr>
+        <tr><td>Rabu</td><td>07.40 - 08.15</td><td>Rabu Gembira</td></tr>
+        <tr><td>Rabu</td><td>08.15 - 09.25</td><td>IPAS (Kode 2)</td></tr>
+        <tr><td>Rabu</td><td>09.25 - 10.00</td><td>Matematika (Kode 29)</td></tr>
+        <tr><td>Rabu</td><td>10.00 - 10.15</td><td>Istirahat</td></tr>
+        <tr><td>Rabu</td><td>10.15 - 11.25</td><td>Penjas/PJOK (Kode 24)</td></tr>
+        <tr><td>Rabu</td><td>11.25 - 12.00</td><td>B. Jawa (Kode 11a)</td></tr>
+        <tr><td>Rabu</td><td>12.00 - 12.40</td><td>Istirahat / Sholat Duhur</td></tr>
+        <tr><td>Rabu</td><td>12.40 - 15.00</td><td>B. Jawa (Kode 11a)</td></tr>
+        <tr><td>Rabu</td><td>15.00 - Selesai</td><td>Pramuka / Ekstrakurikuler</td></tr>
+
+        <tr><td>Kamis</td><td>07.00 - 07.40</td><td>Sholat Dhuha &amp; Membaca Bacaan Sholat</td></tr>
+        <tr><td>Kamis</td><td>07.40 - 09.25</td><td>DDP TJKT (Kode 15)</td></tr>
+        <tr><td>Kamis</td><td>09.25 - 10.00</td><td>Seni Budaya (Kode 30b)</td></tr>
+        <tr><td>Kamis</td><td>10.00 - 10.15</td><td>Istirahat</td></tr>
+        <tr><td>Kamis</td><td>10.15 - 10.50</td><td>Seni Budaya (Kode 30b)</td></tr>
+        <tr><td>Kamis</td><td>10.50 - 12.00</td><td>Sejarah (Kode 27a)</td></tr>
+        <tr><td>Kamis</td><td>12.00 - 12.40</td><td>Istirahat / Sholat Duhur</td></tr>
+        <tr><td>Kamis</td><td>12.40 - 15.00</td><td>Sejarah (Kode 27a)</td></tr>
+        <tr><td>Kamis</td><td>15.00 - Selesai</td><td>Ekstrakurikuler</td></tr>
+
+        <tr><td>Jumat</td><td>07.00 - 07.40</td><td>Khitobah</td></tr>
+        <tr><td>Jumat</td><td>07.40 - 10.00</td><td>Matematika (Kode 3)</td></tr>
+        <tr><td>Jumat</td><td>10.00 - 10.15</td><td>Istirahat / Sholat Dhuha</td></tr>
+        <tr><td>Jumat</td><td>10.15 - 11.25</td><td>Matematika (Kode 5)</td></tr>
+        <tr><td>Jumat</td><td>11.25 - 13.00</td><td>Istirahat / Sholat Jumat</td></tr>
+        <tr><td>Jumat</td><td>13.00 - 14.25</td><td>PPKn (Kode 14)</td></tr>
+        <tr><td>Jumat</td><td>14.25 - Selesai</td><td>Ekstrakurikuler</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section id="piket">
+  <div class="title"><h2>Jadwal Piket</h2><p>Jangan lupa piket sesuai jadwal ya! 🧹</p></div>
+  <div class="grid">
+    <div class="card"><h3>Senin</h3><p>Raffa Azka<br>Astri K.</p></div>
+    <div class="card"><h3>Selasa</h3><p>Dhea B.C<br>Putra F.H</p></div>
+    <div class="card"><h3>Rabu</h3><p>Ainnur Aini<br>P. Meylani</p></div>
+    <div class="card"><h3>Kamis</h3><p>M. Alip Nurdiansyah<br>Fahmi Aziz</p></div>
+    <div class="card"><h3>Jumat</h3><p>M. Rijki<br>Viraldy S.P</p></div>
+  </div>
+</section>
+
+<section id="pengumuman">
+  <div class="title"><h2>Pengumuman</h2><p>Informasi terbaru kelas.</p></div>
+  <div class="card notice">
+    <div class="icon">📢</div>
+    <div><strong>INFO KELAS</strong><p>Silakan ubah bagian ini untuk menambahkan pengumuman tugas, piket, kegiatan, atau agenda kelas.</p></div>
+  </div>
+</section>
+
+<section id="galeri">
+  <div class="title"><h2>Galeri Kelas</h2><p>Tempat menyimpan momen X TKJ/TJKT.</p></div>
+  <div class="gallery">
+    <div class="photo">📷 Foto Kegiatan 1</div>
+    <div class="photo">📷 Foto Kegiatan 2</div>
+    <div class="photo">📷 Foto Kegiatan 3</div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 <b>X TKJ/TJKT</b> • Built with 💻 & ⚡</p>
+</footer>
+
+<script>
+function toggleMenu(){document.getElementById('menu').classList.toggle('open')}
+document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>document.getElementById('menu').classList.remove('open')));
+</script>
+</body>
+</html>
